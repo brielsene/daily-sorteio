@@ -68,10 +68,10 @@ public class PeopleService {
 
     //SORTEIO
     //CASO ZERE TODOS AS PESSOAS SORTEADAS, TODOS DEVEM ESTAR ATIVOS NOVAMENTES
-    public Integer givewayPeople() throws IOException {
+    public DtoPeoplesList givewayPeople() throws IOException {
         List<People>peoplesActivies = peoplesWithStatusOnObject();
         if(peoplesActivies == null || peoplesActivies.size() == 0){
-            return 0;
+            return null;
         }
         List<Integer>ids = new ArrayList<>();
         for(int i = 0; i < peoplesActivies.size(); i++){
@@ -79,10 +79,11 @@ public class PeopleService {
         }
         Collections.shuffle(ids);
         Integer idSorteado = ids.get(0);
-
+        People people = null;
         for(int i = 0; i < peoples.size(); i++){
             if(peoples.get(i).getId().equals(idSorteado)){
                 peoples.get(i).setStatus("Inativo");
+                people = peoples.get(i);
             }
         }
         FileWriter fileWriter = new FileWriter(FILE_PATH);
@@ -91,7 +92,8 @@ public class PeopleService {
         //VERIFICA SE TODOS JÁ FORAM SORTEADOS
         fileWriter.close();
         reloadStatusPeoples();
-        return idSorteado;
+
+        return new DtoPeoplesList(people.getName(), people.getCargo(), people.getStatus());
 
 
 
