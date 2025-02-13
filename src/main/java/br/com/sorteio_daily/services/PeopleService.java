@@ -69,6 +69,7 @@ public class PeopleService {
     //SORTEIO
     //CASO ZERE TODOS AS PESSOAS SORTEADAS, TODOS DEVEM ESTAR ATIVOS NOVAMENTES
     public DtoPeoplesList givewayPeople() throws IOException {
+        System.out.println("Diretório de trabalho: " + System.getProperty("user.dir"));
         List<People>peoplesActivies = peoplesWithStatusOnObject();
         if(peoplesActivies == null || peoplesActivies.size() == 0){
             return null;
