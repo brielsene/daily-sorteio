@@ -47,9 +47,9 @@ public class PeopleController {
 
     @PostMapping("/giveaway")
     public ResponseEntity givewayPeople() throws IOException {
-        Integer i = peopleService.givewayPeople();
-        if(i != 0){
-            return ResponseEntity.status(HttpStatus.OK).body(i);
+        DtoPeoplesList dtoPeoplesList = peopleService.givewayPeople();
+        if(dtoPeoplesList != null){
+            return ResponseEntity.status(HttpStatus.OK).body(dtoPeoplesList);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
