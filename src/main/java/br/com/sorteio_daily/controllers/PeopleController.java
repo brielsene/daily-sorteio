@@ -45,11 +45,11 @@ public class PeopleController {
         return ResponseEntity.status(HttpStatus.OK).body(dtoPeoplesLists);
     }
 
-    @PostMapping("/giveway")
+    @PostMapping("/giveaway")
     public ResponseEntity givewayPeople() throws IOException {
         Integer i = peopleService.givewayPeople();
         if(i != 0){
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.OK).body(i);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }

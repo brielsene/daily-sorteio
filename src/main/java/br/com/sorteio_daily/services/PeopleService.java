@@ -82,13 +82,15 @@ public class PeopleService {
 
         for(int i = 0; i < peoples.size(); i++){
             if(peoples.get(i).getId().equals(idSorteado)){
-                peoples.get(i).setStatus("off");
+                peoples.get(i).setStatus("Inativo");
             }
         }
         FileWriter fileWriter = new FileWriter(FILE_PATH);
         ObjectMapper objectMapper = new ObjectMapper();
         fileWriter.write(objectMapper.writeValueAsString(peoples));
+        //VERIFICA SE TODOS JÁ FORAM SORTEADOS
         fileWriter.close();
+        reloadStatusPeoples();
         return idSorteado;
 
 
@@ -99,6 +101,37 @@ public class PeopleService {
         loadPeoples();
         List<People> ativos = this.peoples.stream().filter(p -> p.getStatus().equals("Ativo")).toList();
         return ativos;
+    }
+
+    //VERIFICAR QUANTOS CLIENTES COM STATUS ATIVOS
+    private Integer verifyPeoplesToGiveway(){
+        loadPeoples();
+        Integer contagem = 0;
+        for(int i = 0; i < this.peoples.size(); i++){
+            if(peoples.get(i).getStatus().equals("Ativo")){
+                contagem++;
+            }
+
+
+        }
+        return contagem;
+    }
+
+    private void reloadStatusPeoples() throws IOException {
+        loadPeoples();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Integer n = verifyPeoplesToGiveway();
+        if(n == 0){
+            for(int i = 0; i < this.peoples.size(); i++){
+                if(this.peoples.get(i).getStatus().equals("Inativo")){
+                    this.peoples.get(i).setStatus("Ativo");
+                }
+            }
+        }
+        FileWriter fileWriter = new FileWriter(FILE_PATH);
+        fileWriter.write(objectMapper.writeValueAsString(peoples));
+        fileWriter.close();
+
     }
 
 

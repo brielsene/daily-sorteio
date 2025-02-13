@@ -3,18 +3,18 @@
     "id": 3,
     "name": "Carlos",
     "cargo": "Gerente",
-    "status": "off"
+    "status": "Ativo"
   },
   {
     "id": 2,
     "name": "Carlos",
     "cargo": "Gerente2",
-    "status": "off"
+    "status": "Ativo"
   },
   {
     "id": 4,
     "name": "Gabriel",
     "cargo": "Gerente3",
-    "status": "off"
+    "status": "Ativo"
   }
 ]
