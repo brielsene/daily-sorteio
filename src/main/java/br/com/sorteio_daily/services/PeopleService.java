@@ -21,7 +21,9 @@ import java.util.stream.Stream;
 public class PeopleService {
     private List<People>peoples = new ArrayList<>();
 //    private final static String FILE_PATH = "data/database.json";
-    private static final String FILE_PATH = "src/main/resources/data/database.json";
+//    private static final String FILE_PATH = "src/main/resources/data/database.json";
+    private static final String FILE_PATH = "/app/resources/data/database.json";
+
 
 
     private void loadPeoples(){
