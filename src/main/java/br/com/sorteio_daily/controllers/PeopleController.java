@@ -19,7 +19,7 @@ public class PeopleController {
     public PeopleController(PeopleService peopleService) {
         this.peopleService = peopleService;
     }
-
+    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public ResponseEntity<List<DtoPeoplesList>>listAll() throws IOException {
         System.out.println("Entrou aqui");
@@ -29,13 +29,13 @@ public class PeopleController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(allPeoples);
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/create")
     public ResponseEntity createPeople(@RequestBody DtoCreatePeople dto) throws IOException {
         peopleService.createPeople(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
+    @CrossOrigin(origins = "*")
     @GetMapping("/actives")
     public ResponseEntity<List<DtoPeoplesList>>returnPeoplesActiviesToGiveway(){
         List<DtoPeoplesList> dtoPeoplesLists = peopleService.peoplesWithStatusOn();
@@ -45,6 +45,7 @@ public class PeopleController {
         return ResponseEntity.status(HttpStatus.OK).body(dtoPeoplesLists);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/giveaway")
     public ResponseEntity givewayPeople() throws IOException {
         DtoPeoplesList dtoPeoplesList = peopleService.givewayPeople();
