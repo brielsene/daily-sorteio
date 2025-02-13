@@ -10,6 +10,6 @@ RUN mvn clean install
 FROM openjdk:21-jdk-slim
 EXPOSE 8080
 
-COPY --from=build /target/ramen-go-0.0.1-SNAPSHOT.jar ramengo.jar
+COPY --from=build /target/sorteio-daily-0.0.1-SNAPSHOT.jar sorteio-daily.jar
 
-ENTRYPOINT [ "java", "-jar", "ramengo.jar" ]
+ENTRYPOINT [ "java", "-jar", "sorteio-daily.jar" ]
